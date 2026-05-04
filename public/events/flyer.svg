@@ -1,0 +1,19 @@
+<svg viewBox="0 0 850 1100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="850" height="1100" fill="#F4ECDD"/>
+  <rect x="40" y="40" width="770" height="1020" fill="none" stroke="#EAC5D2" stroke-width="2"/>
+
+  <line x1="220" y1="180" x2="410" y2="180" stroke="#B08838" stroke-width="1"/>
+  <circle cx="425" cy="180" r="5" fill="none" stroke="#B08838" stroke-width="1"/>
+  <line x1="440" y1="180" x2="630" y2="180" stroke="#B08838" stroke-width="1"/>
+
+  <text x="425" y="270" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="32" font-style="italic" fill="#7A007F" font-weight="500">Raaga Sudha Sabha</text>
+
+  <text x="425" y="500" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="64" fill="#6B1F2A" font-weight="600" letter-spacing="4">UPCOMING</text>
+  <text x="425" y="580" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="64" fill="#6B1F2A" font-weight="600" letter-spacing="4">CONCERT</text>
+
+  <text x="425" y="700" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="28" font-style="italic" fill="#2A1B14">Flyer placeholder</text>
+
+  <line x1="320" y1="900" x2="530" y2="900" stroke="#EAC5D2" stroke-width="1"/>
+  <text x="425" y="950" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#7A6A56" letter-spacing="2">REPLACE THIS FILE WITH THE CONCERT FLYER</text>
+  <text x="425" y="980" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#7A6A56">public/events/flyer.png</text>
+</svg>

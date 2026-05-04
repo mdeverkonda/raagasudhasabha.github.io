@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream text-ink font-body;
+    font-feature-settings: "kern", "liga", "calt";
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-maroon;
+    font-feature-settings: "kern", "liga", "dlig";
+  }
+
+  ::selection {
+    background: #6B1F2A;
+    color: #F4ECDD;
+  }
+
+  /* Inline prose links use the parent site's exact purple — the family signature. */
+  .prose-text a,
+  a.link-purple {
+    @apply text-brand-purple underline decoration-pink decoration-2 underline-offset-4 transition;
+  }
+  .prose-text a:hover,
+  a.link-purple:hover {
+    @apply text-brand-purple-deep decoration-brand-purple;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    @apply outline-none ring-2 ring-maroon ring-offset-2 ring-offset-cream;
+  }
+}
+
+@layer components {
+  .container-edge {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .rule-gold {
+    @apply h-px w-full bg-gold/60;
+  }
+
+  .rule-pink {
+    @apply h-px w-full bg-pink;
+  }
+
+  .smallcaps {
+    @apply uppercase tracking-wider2 text-xs;
+  }
+
+  .kicker {
+    @apply smallcaps text-brand-purple/85;
+  }
+}

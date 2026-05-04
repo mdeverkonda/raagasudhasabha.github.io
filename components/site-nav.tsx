@@ -1,0 +1,123 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Wordmark } from "@/components/wordmark";
+import { DonateButton } from "@/components/donate-button";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/events", label: "Events" },
+  { href: "/about", label: "About" },
+  { href: "/archive", label: "Archive" },
+  { href: "/contact", label: "Contact" },
+];
+
+/** Compact smallcaps version — used in the mobile band only. */
+function TaxExemptCompact() {
+  return (
+    <p className="smallcaps text-[0.65rem] tracking-[0.16em] text-maroon">
+      <span>Tax exempt under section 501(c)(3)</span>
+      <span className="text-muted"> · </span>
+      <span className="text-muted">Federal Tax ID 42-2139154</span>
+    </p>
+  );
+}
+
+export function SiteNav() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-40 bg-cream/90 backdrop-blur supports-[backdrop-filter]:bg-cream/75">
+      {/* Main nav row — bordered on desktop only (mobile gets its border from the tax band) */}
+      <div className="md:border-b md:border-pink">
+        <div className="container-edge flex items-stretch justify-between gap-6 py-4 md:py-6">
+          {/* LEFT: logo + brand text stack */}
+          <Link
+            href="/"
+            className="inline-flex flex-col items-center gap-3 text-center"
+            aria-label="Raaga Sudha Sabha — home"
+          >
+            <Wordmark size="lg" />
+            <span className="font-display italic leading-none text-3xl text-brand-purple md:text-4xl">
+              Raaga Sudha Sabha
+            </span>
+          </Link>
+
+          {/* RIGHT (desktop): nav vertically centered, tax-exempt anchored to the bottom */}
+          <div className="hidden flex-col items-end md:flex">
+            <div className="flex flex-1 items-center">
+              <nav className="flex items-center gap-8" aria-label="Primary">
+                {links.map((l) => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    className="smallcaps text-base text-ink/80 transition hover:text-maroon"
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+                <DonateButton variant="nav">Donate</DonateButton>
+              </nav>
+            </div>
+
+            <p className="font-display italic leading-tight text-right text-2xl text-brand-purple md:text-3xl">
+              Tax exempt under section 501(c)(3) · Federal Tax ID 42-2139154
+            </p>
+          </div>
+
+          {/* MOBILE hamburger */}
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-11 w-11 items-center justify-center self-start text-maroon md:hidden"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        id="mobile-nav"
+        className={cn(
+          "border-t border-pink md:hidden",
+          open ? "block" : "hidden"
+        )}
+      >
+        <nav
+          className="container-edge flex flex-col py-3"
+          aria-label="Primary mobile"
+        >
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="smallcaps min-h-11 border-b border-pink/60 py-3 text-ink/80"
+            >
+              {l.label}
+            </Link>
+          ))}
+          <div className="mt-3">
+            <DonateButton variant="nav" className="w-full justify-center">
+              Donate
+            </DonateButton>
+          </div>
+        </nav>
+      </div>
+
+      {/* Tax-exempt band — mobile only; on desktop the line lives in the right column above */}
+      <div className="border-b border-pink bg-cream-deep/50 md:hidden">
+        <div className="container-edge py-1.5 text-center">
+          <TaxExemptCompact />
+        </div>
+      </div>
+    </header>
+  );
+}
