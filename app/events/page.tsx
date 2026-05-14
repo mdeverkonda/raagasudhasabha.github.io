@@ -2,8 +2,15 @@ import type { Metadata } from "next";
 import { EventsList } from "@/components/events-list";
 import { EventFlyer } from "@/components/event-flyer";
 import { Ornament } from "@/components/ornament";
+import { RsvpModal } from "@/components/rsvp-modal";
 import { getUpcoming, getPast } from "@/lib/events";
-import { FLYER_SRC, FLYER_ALT } from "@/lib/upcoming";
+import {
+  FLYER_SRC,
+  FLYER_ALT,
+  RSVP_OPEN,
+  RSVP_GOOGLE_FORM_URL,
+  RSVP_EVENT_LABEL,
+} from "@/lib/upcoming";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -47,7 +54,15 @@ export default function EventsPage() {
                     Click the flyer for a full-size view with all the details
                     on artists, programme, date, venue and tickets.
                   </p>
-                  <p className="mt-4 text-sm text-muted">
+                  {RSVP_OPEN && (
+                    <div className="mt-6">
+                      <RsvpModal
+                        formUrl={RSVP_GOOGLE_FORM_URL}
+                        eventLabel={RSVP_EVENT_LABEL}
+                      />
+                    </div>
+                  )}
+                  <p className="mt-6 text-sm text-muted">
                     For partnership or press enquiries, write to{" "}
                     <a className="link-purple" href="mailto:info@raagasudhasabha.org">
                       info@raagasudhasabha.org

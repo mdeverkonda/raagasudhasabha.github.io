@@ -1,5 +1,11 @@
 import Link from "next/link";
+import { RsvpModal } from "@/components/rsvp-modal";
 import { type Event, formatEventDate } from "@/lib/events";
+import {
+  RSVP_OPEN,
+  RSVP_GOOGLE_FORM_URL,
+  RSVP_EVENT_LABEL,
+} from "@/lib/upcoming";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -68,19 +74,23 @@ export function EventCard({ event, variant = "grid" }: Props) {
 
         {event.status === "upcoming" && (
           <div className="mt-5 flex flex-wrap gap-3">
-            {event.ticketUrl ? (
+            {RSVP_OPEN && (
+              <RsvpModal
+                formUrl={RSVP_GOOGLE_FORM_URL}
+                eventLabel={RSVP_EVENT_LABEL}
+                variant="primary"
+                className="min-h-11 px-5 py-2"
+              />
+            )}
+            {event.ticketUrl && (
               <a
                 href={event.ticketUrl}
                 target="_blank"
                 rel="noopener"
-                className="smallcaps inline-flex min-h-11 items-center border border-maroon bg-maroon px-5 py-2 text-cream transition hover:bg-maroon-deep"
+                className="smallcaps inline-flex min-h-11 items-center border border-maroon/70 px-5 py-2 text-maroon transition hover:bg-maroon/10"
               >
                 Tickets
               </a>
-            ) : (
-              <span className="smallcaps inline-flex min-h-11 items-center border border-pink-deep bg-pink/40 px-5 py-2 text-maroon">
-                Tickets — coming soon
-              </span>
             )}
             <Link
               href={`/events#${event.id}`}

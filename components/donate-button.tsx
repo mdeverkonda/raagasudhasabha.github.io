@@ -13,7 +13,7 @@ const variantClass: Record<Variant, string> = {
     "smallcaps inline-flex min-h-12 items-center justify-center border border-maroon bg-maroon px-6 py-3 text-cream",
   outline:
     "smallcaps inline-flex min-h-12 items-center justify-center border border-maroon bg-transparent px-6 py-3 text-maroon",
-  nav: "smallcaps text-sm inline-flex min-h-11 items-center rounded-none border border-maroon bg-maroon px-5 py-2 text-cream",
+  nav: "smallcaps text-sm inline-flex min-h-11 items-center rounded-none border border-cream/40 bg-transparent px-5 py-2 text-cream hover:bg-cream/10",
 };
 
 // TODO: re-enable when a real Stripe / PayPal / Donorbox giving flow is wired up.

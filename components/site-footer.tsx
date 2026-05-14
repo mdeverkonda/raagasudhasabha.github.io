@@ -6,16 +6,16 @@ export function SiteFooter() {
     <footer className="bg-maroon-deep text-cream/90">
       <div className="container-edge grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <div className="flex flex-col items-center gap-5 text-center">
+          <div className="flex max-w-sm flex-col items-center gap-5 text-center">
             <Wordmark size="lg" variant="notagline" />
             <p className="font-display italic text-3xl leading-none text-cream md:text-4xl">
               Raaga Sudha Sabha
             </p>
+            <p className="text-sm text-cream/70">
+              A non-profit cultural arts organization preserving and promoting
+              Indian classical music.
+            </p>
           </div>
-          <p className="mt-5 max-w-sm text-sm text-cream/70">
-            A non-profit cultural arts organization preserving and promoting
-            Indian classical music.
-          </p>
         </div>
 
         <div>

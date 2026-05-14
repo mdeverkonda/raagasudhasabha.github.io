@@ -34,8 +34,8 @@ const textSizeClass: Record<Size, string> = {
 };
 
 const SRC: Record<Variant, string> = {
-  notagline: "/logo-notagline.png",
-  tagline: "/logo-tagline.png",
+  notagline: "/rss_logo.png",
+  tagline: "/rss_logo.png",
 };
 
 export function Wordmark({

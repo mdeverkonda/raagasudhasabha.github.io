@@ -19,7 +19,7 @@ These are no longer placeholders — they're set in the codebase.
 
 | Item | Where | Action |
 |---|---|---|
-| **Logo file size** | [public/logo-notagline.png](public/logo-notagline.png), [public/logo-tagline.png](public/logo-tagline.png) | Both files are currently ~8 MB each. They should be compressed to ~150–300 KB before launch (use ImageOptim, Squoosh, or convert to WebP) — otherwise every page download is ~16 MB heavier than it needs to be. |
+| **Logo file size** | [public/rss_logo.png](public/rss_logo.png) | ~915 KB. Fine for launch, but compressing to ~150–300 KB (Squoosh / ImageOptim, or convert to WebP) would still trim every page load. |
 | **Phone for Madhav Deverkonda** | [app/about/page.tsx](app/about/page.tsx) | Treasurer card has no phone wired — add it if it should appear. |
 
 ## The current concert flyer
@@ -42,9 +42,9 @@ Click on the flyer (in either page) opens it at full size in a modal.
 
 ## Logo
 
-The site logo is loaded from [public/logo.png](public/logo.png) by [components/wordmark.tsx](components/wordmark.tsx) and rendered in the nav (every page) and footer (every page).
+The site logo is loaded from [public/rss_logo.png](public/rss_logo.png) by [components/wordmark.tsx](components/wordmark.tsx) and rendered in the nav (every page) and footer (every page).
 
-To swap in a different logo, replace `public/logo.png`. Keep the alt text in the Wordmark component up to date.
+To swap in a different logo, replace `public/rss_logo.png` (or update the `SRC` map in the Wordmark component to point at a new filename). Keep the alt text in the Wordmark component up to date.
 
 ## Integrations / forms
 
@@ -54,6 +54,29 @@ There are currently **no forms** on the site. The newsletter form (footer) and c
 - Contact form — recreate a client component that posts to Formspree (easiest) or Netlify Forms (if hosting on Netlify with `data-netlify="true"`), and add it back to [app/contact/page.tsx](app/contact/page.tsx) inside a `<section>` above the "Reach us" block.
 
 The Donate button is also currently disabled site-wide ([components/donate-button.tsx](components/donate-button.tsx)) — re-enable by swapping it for a real Stripe / PayPal / Donorbox link when ready.
+
+## RSVP (Google Forms-backed)
+
+The site has a built-in RSVP modal ([components/rsvp-modal.tsx](components/rsvp-modal.tsx)) that embeds a Google Form in an iframe. It appears on the home page, the events page, and on individual upcoming event cards when enabled. Responses flow into the form's linked Google Sheet.
+
+**Switch it on:**
+
+1. Build a Google Form with whatever fields you need (Name, Email, Phone, Number of attendees, etc.).
+2. In the form editor → **Responses** tab → link it to a **Google Sheet** so submissions collect in one place.
+3. (Optional) **Settings → Responses → "Get email notifications for new responses"** so each RSVP emails you.
+4. Click **Send** → the **`<>`** (embed) tab → copy the URL from the iframe `src`. The plain "viewform" share link also works — the modal appends `?embedded=true` automatically.
+5. Open [lib/upcoming.ts](lib/upcoming.ts) and set:
+   ```ts
+   export const RSVP_GOOGLE_FORM_URL =
+     "https://docs.google.com/forms/d/e/FORM_ID/viewform";
+   export const RSVP_OPEN = true;
+   export const RSVP_EVENT_LABEL = "Sanjay Subrahmanyan — September 12, 2026";
+   ```
+6. Commit and push — the deploy workflow rebuilds the site and the RSVP buttons appear.
+
+**Between concerts:** set `RSVP_OPEN = false` (or `RSVP_GOOGLE_FORM_URL = ""`) — all RSVP buttons disappear site-wide until the next concert.
+
+**Customising the form:** anything you change inside Google Forms (fields, theming, confirmation message) takes effect immediately — no rebuild required. The site only stores the form URL.
 
 ## Past events
 

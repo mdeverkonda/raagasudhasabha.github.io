@@ -18,10 +18,10 @@ const links = [
 /** Compact smallcaps version — used in the mobile band only. */
 function TaxExemptCompact() {
   return (
-    <p className="smallcaps text-[0.65rem] tracking-[0.16em] text-maroon">
+    <p className="smallcaps text-[0.65rem] tracking-[0.16em] text-cream/80">
       <span>Tax exempt under section 501(c)(3)</span>
-      <span className="text-muted"> · </span>
-      <span className="text-muted">Federal Tax ID 42-2139154</span>
+      <span className="text-cream/50"> · </span>
+      <span className="text-cream/50">Federal Tax ID 42-2139154</span>
     </p>
   );
 }
@@ -30,9 +30,9 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-cream/90 backdrop-blur supports-[backdrop-filter]:bg-cream/75">
+    <header className="sticky top-0 z-40 bg-maroon-deep text-cream/90">
       {/* Main nav row — bordered on desktop only (mobile gets its border from the tax band) */}
-      <div className="md:border-b md:border-pink">
+      <div className="md:border-b md:border-cream/15">
         <div className="container-edge flex items-stretch justify-between gap-6 py-4 md:py-6">
           {/* LEFT: logo + brand text stack */}
           <Link
@@ -41,7 +41,7 @@ export function SiteNav() {
             aria-label="Raaga Sudha Sabha — home"
           >
             <Wordmark size="lg" />
-            <span className="font-display italic leading-none text-3xl text-brand-purple md:text-4xl">
+            <span className="font-display italic leading-none text-3xl text-cream md:text-4xl">
               Raaga Sudha Sabha
             </span>
           </Link>
@@ -54,7 +54,7 @@ export function SiteNav() {
                   <Link
                     key={l.href}
                     href={l.href}
-                    className="smallcaps text-base text-ink/80 transition hover:text-maroon"
+                    className="smallcaps text-base text-cream/80 transition hover:text-gold"
                   >
                     {l.label}
                   </Link>
@@ -63,7 +63,7 @@ export function SiteNav() {
               </nav>
             </div>
 
-            <p className="font-display italic leading-tight text-right text-2xl text-brand-purple md:text-3xl">
+            <p className="font-display italic leading-tight text-right text-2xl text-cream md:text-3xl">
               Tax exempt under section 501(c)(3) · Federal Tax ID 42-2139154
             </p>
           </div>
@@ -75,7 +75,7 @@ export function SiteNav() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
-            className="flex h-11 w-11 items-center justify-center self-start text-maroon md:hidden"
+            className="flex h-11 w-11 items-center justify-center self-start text-cream md:hidden"
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -86,7 +86,7 @@ export function SiteNav() {
       <div
         id="mobile-nav"
         className={cn(
-          "border-t border-pink md:hidden",
+          "border-t border-cream/15 md:hidden",
           open ? "block" : "hidden"
         )}
       >
@@ -99,7 +99,7 @@ export function SiteNav() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="smallcaps min-h-11 border-b border-pink/60 py-3 text-ink/80"
+              className="smallcaps min-h-11 border-b border-cream/15 py-3 text-cream/80"
             >
               {l.label}
             </Link>
@@ -113,7 +113,7 @@ export function SiteNav() {
       </div>
 
       {/* Tax-exempt band — mobile only; on desktop the line lives in the right column above */}
-      <div className="border-b border-pink bg-cream-deep/50 md:hidden">
+      <div className="border-b border-cream/15 bg-maroon-deep md:hidden">
         <div className="container-edge py-1.5 text-center">
           <TaxExemptCompact />
         </div>
