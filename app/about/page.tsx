@@ -149,7 +149,7 @@ export default function AboutPage() {
               "Siddhartha Dusi",
               "Krishna Nadiminti",
               "Padmanjali Deverkonda",
-              "Purna Manda",
+              "Purna Vanka",
             ].map((name) => (
               <li
                 key={name}
