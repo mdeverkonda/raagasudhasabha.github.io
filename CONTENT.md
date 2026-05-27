@@ -13,7 +13,7 @@ These are no longer placeholders — they're set in the codebase.
 | Federal Tax ID (EIN) | `42-2139154` |
 | 501(c)(3) status | Stated in header band, footer, About |
 | Board | Sudha Dusi (President), Jayaram Manda (Secretary), Madhav Deverkonda (Treasurer) |
-| Advisory Committee | Santosh Dusi, Siddhartha Dusi, Krishna Nadiminti, Padmanjali Deverkonda, Purna Manda |
+| Advisory Committee | Santosh Dusi, Siddhartha Dusi, Krishna Nadiminti, Padmanjali Deverkonda, Purna Vanka |
 
 ## Still to provide / confirm
 

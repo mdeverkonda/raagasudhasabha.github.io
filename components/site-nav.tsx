@@ -33,15 +33,15 @@ export function SiteNav() {
     <header className="sticky top-0 z-40 bg-maroon-deep text-cream/90">
       {/* Main nav row — bordered on desktop only (mobile gets its border from the tax band) */}
       <div className="md:border-b md:border-cream/15">
-        <div className="container-edge flex items-stretch justify-between gap-6 py-4 md:py-6">
+        <div className="container-edge flex items-stretch justify-between gap-6 py-2 md:py-3">
           {/* LEFT: logo + brand text stack */}
           <Link
             href="/"
-            className="inline-flex flex-col items-center gap-3 text-center"
+            className="inline-flex flex-col items-center gap-2 text-center"
             aria-label="Raaga Sudha Sabha — home"
           >
-            <Wordmark size="lg" />
-            <span className="font-display italic leading-none text-3xl text-cream md:text-4xl">
+            <Wordmark size="lg" className="h-20 md:h-24" />
+            <span className="font-display italic leading-none text-2xl text-cream md:text-3xl">
               Raaga Sudha Sabha
             </span>
           </Link>
@@ -63,7 +63,7 @@ export function SiteNav() {
               </nav>
             </div>
 
-            <p className="font-display italic leading-tight text-right text-2xl text-cream md:text-3xl">
+            <p className="font-display italic leading-tight text-right text-lg text-cream md:text-xl">
               Tax exempt under section 501(c)(3) · Federal Tax ID 42-2139154
             </p>
           </div>
