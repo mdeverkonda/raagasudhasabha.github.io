@@ -34,16 +34,10 @@ export default function AboutPage() {
               cultural enrichment.
             </p>
             <p className="mt-6">
-              The Sabha is the concert and preservation arm of a wider family
-              dedicated to Indian classical music. Our sister organization,{" "}
-              <a href="https://www.raagasudha.net" target="_blank" rel="noopener">
-                Raaga Sudha School of Music
-              </a>
-              , has been teaching Carnatic vocal music since 2007. Where the
-              School cultivates the next generation of musicians, the Sabha
-              creates the stage on which both established masters and emerging
-              voices can perform — and the archive in which their work can
-              endure.
+              To honor this living tradition, the Sabha serves as both a vibrant stage 
+              and a lasting archive. We provide a platform where master musicians and 
+              emerging talents perform side-by-side, ensuring their artistry is celebrated 
+              today and preserved for future generations.
             </p>
             <p className="mt-6">
               We uphold the art form&rsquo;s high standards by organizing
@@ -64,25 +58,23 @@ export default function AboutPage() {
             <div className="lg:col-span-4">
               <p className="kicker">History</p>
               <h2 className="mt-3 font-display text-display-md text-maroon">
-                A sister initiative
+                A Public Platform for Music
               </h2>
             </div>
             <div className="prose-text lg:col-span-8 text-lg leading-relaxed text-ink/85">
               {/* TODO: replace with the real founding story when ready */}
               <p>
-                Raaga Sudha Sabha was founded as a sister initiative of{" "}
-                <a href="https://www.raagasudha.net" target="_blank" rel="noopener">
-                  Raaga Sudha School of Music
-                </a>
-                , extending two decades of teaching tradition into a public
-                platform for performance, preservation and community.
+                This organization was established to bring classical 
+                music traditions into the public sphere. It serves as a platform
+                 for performance, preservation, and community engagement.
               </p>
               <p className="mt-4">
-                Where the School answers the question{" "}
-                <em>&ldquo;how do we teach this music?&rdquo;</em>, the Sabha
-                answers <em>&ldquo;how do we hold space for this music in the
-                world?&rdquo;</em> — through concerts, archives, mentorship and a
-                serious commitment to the ecological cost of the work.
+                While the foundational institution focuses on pedagogy 
+                and teaching methods, this initiative addresses a broader question: 
+                "How do we sustain and elevate this music within the wider world?" 
+                It pursues this mission through live concerts, archival work, mentorship programs, 
+                and a commitment to environmentally responsible practices in presenting and preserving 
+                the art form.
               </p>
             </div>
           </div>

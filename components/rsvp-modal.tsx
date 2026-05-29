@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -12,12 +12,6 @@ type Props = {
   className?: string;
 };
 
-/** Append ?embedded=true (or &embedded=true) to a Google Forms viewform URL. */
-function toEmbedUrl(url: string): string {
-  if (url.includes("embedded=true")) return url;
-  return url + (url.includes("?") ? "&" : "?") + "embedded=true";
-}
-
 export function RsvpModal({
   formUrl,
   label = "RSVP",
@@ -26,12 +20,10 @@ export function RsvpModal({
   className,
 }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const [mounted, setMounted] = useState(false);
 
   if (!formUrl) return null;
 
   const open = () => {
-    setMounted(true);
     dialogRef.current?.showModal();
   };
   const close = () => dialogRef.current?.close();
@@ -76,25 +68,18 @@ export function RsvpModal({
             <h2 className="font-display text-3xl text-maroon md:text-4xl">
               RSVP
             </h2>
-            <p className="mt-2 text-sm text-muted">
-              Let us know you&rsquo;re coming — it helps us plan the venue.
+            <p className="mt-2 text-sm text-muted text-center">
+              We're thrilled by the overwhelming response to this concert!
+              Registrations are currently full. Please check back in a few days
+              to see if additional spaces become available. Thank you for your interest and support.
             </p>
-          </div>
-          <div className="min-h-0 flex-1 overflow-hidden px-2 pb-2 md:px-4 md:pb-4">
-            {mounted && (
-              <iframe
-                src={toEmbedUrl(formUrl)}
-                title="RSVP form"
-                className="block h-[70vh] w-full"
-                width="100%"
-                height="100%"
-                frameBorder={0}
-                marginHeight={0}
-                marginWidth={0}
-              >
-                Loading…
-              </iframe>
-            )}
+            <p className="mt-2 pb-8 text-sm text-muted text-center">
+              Please contact{" "}
+              <a href="mailto:info@raagasudhasabha.org" className="text-maroon underline hover:text-maroon-deep">
+                info@raagasudhasabha.org
+              </a>{" "}
+              for any additional questions.
+            </p>
           </div>
         </div>
       </dialog>
