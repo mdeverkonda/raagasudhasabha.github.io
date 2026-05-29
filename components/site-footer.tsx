@@ -48,7 +48,7 @@ export function SiteFooter() {
 
       <div className="border-t border-cream/15">
         <div className="container-edge flex flex-col gap-3 py-6 text-xs text-cream/60 md:flex-row md:items-center md:justify-between">
-          <p>
+          {/* <p>
             A sister initiative of{" "}
             <a
               href="https://www.raagasudha.net"
@@ -59,7 +59,7 @@ export function SiteFooter() {
               Raaga Sudha School of Music
             </a>
             .
-          </p>
+          </p> */}
           <p>
             Tax exempt under section 501(c)(3).
             {" "}Federal Tax ID: <span className="font-mono">42-2139154</span>
