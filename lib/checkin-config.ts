@@ -1,15 +1,18 @@
 /**
- * Apps Script web app URL for the concert check-in API.
+ * Check-in API endpoint.
  *
- * Paste the URL from your Apps Script deployment here. It looks like:
- *   https://script.google.com/macros/s/AKfycb.../exec
+ * Currently points at a Cloudflare Worker proxy that forwards requests to
+ * the Apps Script /exec URL. The proxy exists because Apps Script's redirect
+ * to googleusercontent.com is blocked by iOS Safari's Intelligent Tracking
+ * Prevention; serving via Workers' own domain avoids that.
  *
- * You can find it in the Apps Script editor: Deploy → Manage deployments → URL.
+ * Worker source: dashboard.cloudflare.com → Workers & Pages → rsvp-checkin-proxy.
+ * The worker forwards every query param to the Apps Script /exec URL.
  *
- * Set CHECKIN_ENABLED to true once the URL is in place. While disabled,
- * the /checkin page renders a "not configured" placeholder.
+ * Set CHECKIN_ENABLED to false to render a "not configured" placeholder
+ * (useful when there is no active concert).
  */
 export const CHECKIN_APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzKbdqmWq3ucAXlJ0tO3pGgLAnpCL3gCVelvDUvsnC8ri-sQXcNHaz6MfFxNqdbU0gu1w/exec";
+  "https://rsvp-checkin-proxy.mdeverkonda.workers.dev/";
 
 export const CHECKIN_ENABLED = true;
