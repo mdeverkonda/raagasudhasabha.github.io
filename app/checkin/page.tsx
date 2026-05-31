@@ -58,18 +58,58 @@ declare global {
   }
 }
 
+// JSONP transport — Apps Script's /exec URL 302-redirects to googleusercontent.com,
+// and iOS Safari rejects the cross-origin redirect for fetch(). A <script> tag bypasses
+// CORS entirely; Apps Script returns `callback({...})` which we capture on window.
 async function callApi(params: Record<string, string>): Promise<any> {
   if (!CHECKIN_APPS_SCRIPT_URL) {
     throw new Error("CHECKIN_APPS_SCRIPT_URL is not configured.");
   }
-  const url = new URL(CHECKIN_APPS_SCRIPT_URL);
-  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
-  const res = await fetch(url.toString(), {
-    method: "GET",
-    redirect: "follow",
+  return new Promise((resolve, reject) => {
+    const callbackName =
+      "__rsvpcb_" +
+      Date.now().toString(36) +
+      Math.floor(Math.random() * 1e9).toString(36);
+    let scriptEl: HTMLScriptElement | null = null;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+
+    const cleanup = () => {
+      if (timer) clearTimeout(timer);
+      try {
+        delete (window as unknown as Record<string, unknown>)[callbackName];
+      } catch {
+        (window as unknown as Record<string, unknown>)[callbackName] = undefined;
+      }
+      if (scriptEl && scriptEl.parentNode) {
+        scriptEl.parentNode.removeChild(scriptEl);
+      }
+    };
+
+    timer = setTimeout(() => {
+      cleanup();
+      reject(new Error("Request timed out"));
+    }, 15000);
+
+    (window as unknown as Record<string, (data: unknown) => void>)[callbackName] = (
+      data
+    ) => {
+      cleanup();
+      resolve(data);
+    };
+
+    const url = new URL(CHECKIN_APPS_SCRIPT_URL);
+    Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+    url.searchParams.set("callback", callbackName);
+
+    scriptEl = document.createElement("script");
+    scriptEl.src = url.toString();
+    scriptEl.async = true;
+    scriptEl.onerror = () => {
+      cleanup();
+      reject(new Error("JSONP script load failed"));
+    };
+    document.body.appendChild(scriptEl);
   });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res.json();
 }
 
 export default function CheckinPage() {
